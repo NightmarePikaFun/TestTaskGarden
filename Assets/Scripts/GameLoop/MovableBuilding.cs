@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class MovableBuilding : MonoBehaviour
 {
+    [SerializeField]
+    private Rigidbody2D rb;
+
     private int collisionCounter = 0;
-    // Start is called before the first frame update
-    void Start()
+
+    public void Place()
     {
-        
+
     }
 
     public void Move(Vector3 moveVector)
@@ -28,5 +31,10 @@ public class MovableBuilding : MonoBehaviour
         collisionCounter--;
         if (collisionCounter == 0)
             GetComponent<SpriteRenderer>().color = Color.white;
+    }
+
+    private void OnDestroy()
+    {
+        Destroy(rb);
     }
 }

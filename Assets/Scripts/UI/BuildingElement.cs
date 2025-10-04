@@ -1,18 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class BuildingElement : MonoBehaviour
 {
-    public List<Building> buildings {  get; private set; }
-
-    public GameManager Instance;
-
-    private void Awake()
-    {
-        Instance = this;
-    }
-
+    [SerializeField]
+    private Image buildingImage;
+    [SerializeField]
+    private Button activateButton;
     // Start is called before the first frame update
     void Start()
     {
