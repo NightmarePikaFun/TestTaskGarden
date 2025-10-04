@@ -2,72 +2,69 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
+using GameLoop;
+using System;
 
-public class GameController : MonoBehaviour
+namespace GameData
 {
-    [SerializeField]
-    private MovableBuilding buildingPrefab;
-
-    private bool canBuild = false;
-
-    private BuildingElement _element;
-    private MovableBuilding movableBuilding;
-
-    private BuildingController buildingController;
-    private InputController inputController;
-
-    [Inject]
-    private void Construct(BuildingController bController, InputController iController)
+    public class GameController : MonoBehaviour
     {
-        buildingController = bController;
-        inputController = iController;
-        inputController.SetPlaceAction(ActivateBuilding);
-    }
+        [SerializeField]
+        private MovableBuilding buildingPrefab;
 
-    public void SetBuilding(Building building, BuildingElement buildingElement)
-    {
-        canBuild = true;
-        if(_element == null)
+        private bool canBuild = false;
+
+        private MovableBuilding movableBuilding;
+
+        private BuildingController buildingController;
+        private InputController inputController;
+        private Action resetView;
+
+        [Inject]
+        private void Construct(BuildingController bController, InputController iController)
         {
-           movableBuilding = Instantiate(buildingPrefab);
+            buildingController = bController;
+            inputController = iController;
+            inputController.SetPlaceAction(ActivateBuilding);
         }
-        else
+
+        public void SetBuilding(Building building, Action reset)
         {
-            _element.ResetState();
+            canBuild = true;
+            if (movableBuilding == null)
+            {
+                movableBuilding = Instantiate(buildingPrefab);
+            }
+            else
+            {
+                resetView?.Invoke();
+            }
+            movableBuilding.Construct(building, inputController);
         }
-        movableBuilding.Construct(building, inputController);
-        _element = buildingElement;
-    }
 
-    public void Deactivate()
-    {
-        Destroy(movableBuilding.gameObject);
-        movableBuilding = null;
-        _element.ResetState();
-        _element = null;
-        canBuild = false;
-    }
-
-
-    public void ActivateBuilding()
-    {
-        if (movableBuilding == null)
-            return;
-        if (canBuild && movableBuilding.CanPlace())
+        public void Deactivate()
         {
-            movableBuilding.Place();
-            buildingController.AddNewBuilding(movableBuilding.GetBuldingInfo());
+            Destroy(movableBuilding.gameObject);
             movableBuilding = null;
-            _element.ResetState();
-            _element = null;
             canBuild = false;
-            inputController.ClearMoveAction();
-            Debug.Log("+");
         }
-    }
 
-    void Update()
-    {
-        
+
+        public void ActivateBuilding()
+        {
+            if (movableBuilding == null)
+                return;
+            if (canBuild && movableBuilding.CanPlace())
+            {
+                resetView?.Invoke();
+                resetView = null;
+                movableBuilding.Place();
+                buildingController.AddNewBuilding(movableBuilding.GetBuldingInfo());
+                movableBuilding = null;
+                canBuild = false;
+                inputController.ClearMoveAction();
+                Debug.Log("+");
+            }
+        }
     }
 }

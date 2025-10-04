@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 [Serializable]
 public class Building
 {
@@ -22,7 +23,7 @@ public class Building
 
     public string Name
     {
-        get => _name; 
+        get => _name;
     }
 
     public int Cost
@@ -40,7 +41,7 @@ public class Building
         get => _workTime;
     }
 
-    public Building(string id ,string name, int cost, int production, int workTime, string spriteName)
+    public Building(string id, string name, int cost, int production, int workTime, string spriteName)
     {
         _id = id;
         _name = name;

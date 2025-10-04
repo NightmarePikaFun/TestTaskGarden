@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
+using GameData;
 
 public class GameManager : MonoInstaller
 {
@@ -31,3 +32,4 @@ public class GameManager : MonoInstaller
             .AsCached();
     }
 }
+

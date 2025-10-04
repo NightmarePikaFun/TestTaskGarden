@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using GameData;
 
 public class BuildingElement : MonoBehaviour
 {
@@ -36,7 +37,7 @@ public class BuildingElement : MonoBehaviour
     public void ActivateBuilding()
     {
         //TODO change UI mb switch
-        gameController.SetBuilding(currentBuilding, this);
+        gameController.SetBuilding(currentBuilding, ResetState);
         state = !state;
     }
 

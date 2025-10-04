@@ -172,6 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93608ea35727745459b8db8c02c69074, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collider: {fileID: 26545547889278652}
   rb: {fileID: 8126914245285974123}
   buildingInfo: {fileID: 8571593027508734787}
 --- !u!114 &8571593027508734787

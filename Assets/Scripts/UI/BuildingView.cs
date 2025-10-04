@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
+using GameData;
 
 public class BuildingView : MonoBehaviour
 {
