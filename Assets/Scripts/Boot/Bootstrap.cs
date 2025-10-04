@@ -14,6 +14,8 @@ public class Bootstrap : MonoBehaviour
     public Dictionary<string, Building> buildings;
 
     private BuildingController buildingController;
+    private List<Building> buildingList;
+
     [Inject]
     private void Construct(BuildingController controller)
     {

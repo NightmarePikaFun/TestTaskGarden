@@ -43,6 +43,7 @@ public class BuildingView : MonoBehaviour
         foreach (var building in buildingController.buildings)
         {
             BuildingElement buildingElement = Instantiate(buildingPrefab, transform);
+            buildingElement.Construct(gameController);
             buildings.Add(buildingElement);
             buildingElement.SetBuilding(building.Value);
         }

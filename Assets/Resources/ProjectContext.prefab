@@ -76,6 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 8820808112537451734}
+  inputController: {fileID: 3860135336147451706, guid: b27f2e1734532b74d8fa87b7911da5de, type: 3}
 --- !u!114 &8820808112537451734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,3 +89,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d33f5ab186cf744fa3b69e783bb6004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingPrefab: {fileID: 6089189605323410077, guid: 5831730807aaa6e46afaa45c5a86721d, type: 3}

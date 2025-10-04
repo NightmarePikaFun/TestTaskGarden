@@ -6,6 +6,13 @@ public class BuildingController
 {
     public Dictionary<string, Building> buildings;
 
+    private List<BuildingInfo> buildingList;
+
+    public BuildingController()
+    {
+        buildingList = new List<BuildingInfo>();
+    }
+
     public void LoadBuildingSprites(List<Sprite> sprites)
     {
         foreach (var sprite in sprites)
@@ -15,5 +22,20 @@ public class BuildingController
                 buildings[sprite.name].SetSprite(sprite);
             }
         }
+    }
+
+    public void AddNewBuilding(BuildingInfo building)
+    {
+        buildingList.Add(building);
+    }
+
+    public void LoadBuildings(List<BuildingInfo> buildings)
+    {
+        buildingList = buildings;
+    }
+
+    public List<BuildingInfo> GetAllBuildings()
+    {
+        return buildingList;
     }
 }
