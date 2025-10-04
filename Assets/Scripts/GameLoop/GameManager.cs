@@ -1,27 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoInstaller
 {
-    public List<Building> buildings {  get; private set; }
+    [SerializeField]
+    private GameController controller;
 
-    public GameManager Instance;
+    private BuildingController buildController = new BuildingController();
 
     private void Awake()
     {
-        Instance = this;
+        DontDestroyOnLoad(this);
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public override void InstallBindings()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Container.Bind<GameController>()
+            .FromInstance(controller)
+            .AsCached();
+        Container.Bind<BuildingController>()
+            .FromInstance(buildController)
+            .AsCached();
     }
 }

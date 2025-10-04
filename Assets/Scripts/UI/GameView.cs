@@ -16,6 +16,10 @@ public class GameView : MonoBehaviour
     {
         buildButton.onClick.AddListener(SwitchBuildingView);
         destroyButton.onClick.AddListener(ActivateDestroy);
+    }
+
+    void Start()
+    {
         buildingView.Initialize();
     }
 
@@ -30,10 +34,7 @@ public class GameView : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    
 
     // Update is called once per frame
     void Update()
