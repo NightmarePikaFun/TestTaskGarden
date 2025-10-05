@@ -1,0 +1,8 @@
+{
+	"_id":"Reactor",
+	"_name":"Reactor",
+	"_cost":10,
+	"_production":1,
+	"_workTime":10,
+	"_spriteName": "Reactor"
+}
