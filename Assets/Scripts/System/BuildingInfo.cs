@@ -14,6 +14,8 @@ public class BuildingInfo : MonoBehaviour
         spriteRenderer.sprite = building.Sprite;
     }
 
+    public Building GetBuilding() => currentBuilding;
+
     // Start is called before the first frame update
     void Start()
     {

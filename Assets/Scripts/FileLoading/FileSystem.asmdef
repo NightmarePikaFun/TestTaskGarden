@@ -1,7 +1,9 @@
 {
     "name": "FileSystem",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:a3969d03ea23bbf4e96f04fc7788c275"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

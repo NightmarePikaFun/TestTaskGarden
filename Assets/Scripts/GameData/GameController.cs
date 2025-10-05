@@ -47,7 +47,8 @@ namespace GameData
         {
             inputController.ClearMoveAction();
             inputController.ClearPlaceAction();
-            Destroy(movableBuilding.gameObject);
+            if(movableBuilding != null)
+                Destroy(movableBuilding.gameObject);
             movableBuilding = null;
             canBuild = false;
         }

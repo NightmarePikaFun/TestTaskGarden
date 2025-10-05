@@ -1,21 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
-namespace FileSystem
+public static class DataSaver
 {
-    public class DataSaver : MonoBehaviour
+    public static void SaveData(List<BuildingInfo> buildings, string path)
     {
-        // Start is called before the first frame update
-        void Start()
+        SerializedArray<BuildingInfoData> data = ConvertToSaveData(buildings);
+        string saveData = JsonUtility.ToJson(data);
+        Save(saveData, path);
+    }
+
+
+    private static void Save(string data, string path)
+    {
+        StreamWriter writer = new StreamWriter(path,false);
+        writer.Write(data);
+        writer.Close();
+    }
+
+    private static SerializedArray<BuildingInfoData> ConvertToSaveData(List<BuildingInfo> buildings)
+    {
+        SerializedArray<BuildingInfoData> savedData;
+        List<BuildingInfoData> list = new List<BuildingInfoData>();
+        foreach(var bulding in buildings)
         {
-
+            BuildingInfoData info = new BuildingInfoData(bulding);
+            list.Add(info);
         }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
+        savedData = new SerializedArray<BuildingInfoData>(list);
+        return savedData;
     }
 }
+

@@ -1,51 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
-using FileSystem;
 using GameData;
+using FileSystem;
 
-public class Bootstrap : MonoBehaviour
+public class Bootstrap : MonoInstaller
 {
     [SerializeField]
-    private List<Sprite> sprites;
+    private GameController controller;
+    [SerializeField]
+    private InputController inputController;
+    [SerializeField]
+    private FileController fileController;
 
-    public Dictionary<string, Building> buildings;
+    private BuildingController buildController = new BuildingController();
 
-    private BuildingController buildingController;
-    private List<Building> buildingList;
-
-    [Inject]
-    private void Construct(BuildingController controller)
+    private void Awake()
     {
-        buildingController = controller;
+        DontDestroyOnLoad(this);
     }
 
-    private void Start()
+    public override void InstallBindings()
     {
-        LoadBuildings();
-        buildingController.buildings = buildings;
-        buildingController.LoadBuildingSprites(sprites);
-        SceneManager.LoadScene("MainScene");
-    }
-
-    public void LoadBuildings()
-    {
-        buildings = new Dictionary<string, Building>();
-        List<string> files = FileLoader.LoadFiles("resources/buildings");
-        foreach (string file in files)
-        {
-            StreamReader reader = new StreamReader(file);
-            string jsonItem = reader.ReadToEnd();
-            reader.Close();
-            if (jsonItem == "")
-                continue;
-            Building building = JsonUtility.FromJson<Building>(jsonItem);
-            buildings.Add(building.Id,building);
-
-        }
+        inputController = Instantiate(inputController);
+        Container.Bind<GameController>()
+            .FromInstance(controller)
+            .AsCached();
+        Container.Bind<BuildingController>()
+            .FromInstance(buildController)
+            .AsCached();
+        Container.Bind<InputController>()
+            .FromInstance(inputController)
+            .AsCached();
+        Container.Bind<FileController>()
+            .FromInstance(fileController)
+            .AsCached();
     }
 }

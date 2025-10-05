@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1641530169468322653}
   - component: {fileID: 5343036397140758667}
-  - component: {fileID: 6108047867541487213}
   - component: {fileID: 8820808112537451734}
+  - component: {fileID: -4647228397850762172}
+  - component: {fileID: 7926341860547984301}
   m_Layer: 0
   m_Name: ProjectContext
   m_TagString: Untagged
@@ -48,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
-  - {fileID: 6108047867541487213}
+  - {fileID: -4647228397850762172}
   _installerPrefabs: []
   _parentNewObjectsUnderContext: 0
   _editorReflectionBakingCoverageMode: 0
@@ -63,20 +64,6 @@ MonoBehaviour:
       _missingHandlerDefaultResponse: 2
       _requireStrictUnsubscribe: 0
       _defaultAsyncTickPriority: 1
---- !u!114 &6108047867541487213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 546137407547219345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6036e42af28232340bfa944fd11f6705, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 8820808112537451734}
-  inputController: {fileID: 3860135336147451706, guid: b27f2e1734532b74d8fa87b7911da5de, type: 3}
 --- !u!114 &8820808112537451734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,3 +77,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingPrefab: {fileID: 6089189605323410077, guid: 5831730807aaa6e46afaa45c5a86721d, type: 3}
+--- !u!114 &-4647228397850762172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546137407547219345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32f380c7d1c72ed499d9afc48cb2ecdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 8820808112537451734}
+  inputController: {fileID: 3860135336147451706, guid: b27f2e1734532b74d8fa87b7911da5de, type: 3}
+  fileController: {fileID: 7926341860547984301}
+  sprites: []
+--- !u!114 &7926341860547984301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546137407547219345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04b8b87e51cd7ec4f814ad1d2d97496f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

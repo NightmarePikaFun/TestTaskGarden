@@ -46,5 +46,10 @@ namespace GameData
         {
             return buildingList;
         }
+
+        public Building GetBuilding(string id)
+        {
+            return buildings[id];
+        }
     }
 }

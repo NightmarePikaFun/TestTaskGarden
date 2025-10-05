@@ -65,7 +65,6 @@ public class CleanerObject : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Enter-"+collision.name);
         if(collision.tag == "Building")
         {
             building = collision.GetComponent<BuildingInfo>();
@@ -78,6 +77,5 @@ public class CleanerObject : MonoBehaviour
         {
             building = null;
         }
-        Debug.Log("Exit-"+collision.name);
     }
 }

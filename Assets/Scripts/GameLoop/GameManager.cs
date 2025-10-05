@@ -3,33 +3,49 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 using GameData;
+using FileSystem;
+using System.IO;
+using UnityEngine.SceneManagement;
 
-public class GameManager : MonoInstaller
+public class GameManager : MonoBehaviour
 {
     [SerializeField]
-    private GameController controller;
-    [SerializeField]
-    private InputController inputController;
+    private List<Sprite> sprites;
 
-    private BuildingController buildController = new BuildingController();
+    public Dictionary<string, Building> buildings;
 
-    private void Awake()
+    private BuildingController buildingController;
+    private List<Building> buildingList;
+
+    [Inject]
+    private void Construct(BuildingController controller)
     {
-        DontDestroyOnLoad(this);
+        buildingController = controller;
     }
 
-    public override void InstallBindings()
+    private void Start()
     {
-        inputController = Instantiate(inputController);
-        Container.Bind<GameController>()
-            .FromInstance(controller)
-            .AsCached();
-        Container.Bind<BuildingController>()
-            .FromInstance(buildController)
-            .AsCached();
-        Container.Bind<InputController>()
-            .FromInstance(inputController)
-            .AsCached();
+        LoadBuildings();
+        buildingController.buildings = buildings;
+        buildingController.LoadBuildingSprites(sprites);
+        SceneManager.LoadScene("MainScene");
+    }
+
+    public void LoadBuildings()
+    {
+        buildings = new Dictionary<string, Building>();
+        List<string> files = FileLoader.LoadFiles("resources/buildings");
+        foreach (string file in files)
+        {
+            StreamReader reader = new StreamReader(file);
+            string jsonItem = reader.ReadToEnd();
+            reader.Close();
+            if (jsonItem == "")
+                continue;
+            Building building = JsonUtility.FromJson<Building>(jsonItem);
+            buildings.Add(building.Id, building);
+
+        }
     }
 }
 

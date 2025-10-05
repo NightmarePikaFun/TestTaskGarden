@@ -53,3 +53,22 @@ public class Building
 
     public void SetSprite(Sprite sprite) => Sprite = sprite;
 }
+
+[Serializable]
+public class BuildingInfoData
+{
+    public string Id;
+    public Vector3 Position;
+    public BuildingInfoData(string id, Vector3 pos)
+    {
+        Id = id;
+        Position = pos;
+    }
+
+    public BuildingInfoData(BuildingInfo buildingInfo)
+    {
+        Building building = buildingInfo.GetBuilding();
+        Id = building.Id;
+        Position = buildingInfo.transform.position;
+    }
+}
