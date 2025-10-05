@@ -31,6 +31,12 @@ namespace GameData
             buildingList.Add(building);
         }
 
+        public void RemoveBuilding(BuildingInfo building)
+        {
+            if(buildingList.Contains(building))
+                buildingList.Remove(building);
+        }
+
         public void LoadBuildings(List<BuildingInfo> buildings)
         {
             buildingList = buildings;

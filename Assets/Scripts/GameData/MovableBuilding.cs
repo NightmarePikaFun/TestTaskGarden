@@ -19,7 +19,7 @@ namespace GameLoop
         public void Construct(Building building, InputController inputController)
         {
             buildingInfo.Construct(building);
-            inputController.SetMoveAction(Move);
+            inputController.SetMoveAction(MouseMove, KeyMove);
         }
 
         public void Place()
@@ -27,9 +27,14 @@ namespace GameLoop
             Destroy(this);
         }
 
-        public void Move(Vector3Int moveVector)
+        public void MouseMove(Vector3Int moveVector)
         {
             transform.position = moveVector;
+        }
+
+        public void KeyMove(Vector3Int moveVector)
+        {
+            transform.position += moveVector;
         }
 
         public BuildingInfo GetBuldingInfo() => buildingInfo;

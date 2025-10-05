@@ -25,11 +25,12 @@ namespace GameData
         {
             buildingController = bController;
             inputController = iController;
-            inputController.SetPlaceAction(ActivateBuilding);
+            
         }
 
         public void SetBuilding(Building building, Action reset)
         {
+            inputController.SetPlaceAction(ActivateBuilding);
             canBuild = true;
             if (movableBuilding == null)
             {
@@ -44,6 +45,8 @@ namespace GameData
 
         public void Deactivate()
         {
+            inputController.ClearMoveAction();
+            inputController.ClearPlaceAction();
             Destroy(movableBuilding.gameObject);
             movableBuilding = null;
             canBuild = false;

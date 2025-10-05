@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class GameView : MonoBehaviour
 {
@@ -11,11 +12,22 @@ public class GameView : MonoBehaviour
     private Button buildButton;
     [SerializeField]
     private Button destroyButton;
+    [SerializeField]
+    private Cleaner cleaner;
+
+    private InputController inputController;
+
+    [Inject]
+    private void Construct(InputController iController)
+    {
+        inputController = iController;
+    }
 
     private void Awake()
     {
         buildButton.onClick.AddListener(SwitchBuildingView);
         destroyButton.onClick.AddListener(ActivateDestroy);
+        inputController.SetCancelAction(Cancel);
     }
 
     void Start()
@@ -26,13 +38,21 @@ public class GameView : MonoBehaviour
     public void SwitchBuildingView()
     {
         buildingView.SwitchView();
+        cleaner.DisableClean();
     }
 
     public void ActivateDestroy()
     {
-
+        buildingView.HideView();
+        cleaner.EnableClean();
     }
 
+    private void Cancel()
+    {
+        buildingView.HideView();
+        cleaner.DisableClean();
+        inputController.ClearPlaceAction();
+    }
     // Start is called before the first frame update
     
 

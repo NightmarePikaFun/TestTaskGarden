@@ -37,6 +37,16 @@ public class BuildingView : MonoBehaviour
     public void SwitchView()
     {
         canvasGroup.alpha = canvasGroup.alpha == 1 ? 0 : 1;
+        if (canvasGroup.alpha == 0)
+        {
+            gameController.Deactivate();
+        }
+    }
+
+    public void HideView()
+    {
+        canvasGroup.alpha = 0;
+        gameController.Deactivate();
     }
 
     public void InitBuildings()
